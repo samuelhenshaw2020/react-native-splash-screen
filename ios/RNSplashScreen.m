@@ -10,6 +10,17 @@
 #import "RNSplashScreen.h"
 #import <React/RCTBridge.h>
 
+#if RCT_NEW_ARCH_ENABLED
+#import <React/RCTSurfaceHostingProxyRootView.h>
+#import <React/RCTSurfaceHostingView.h>
+
+static RCTSurfaceHostingProxyRootView *_rootView = nil;
+#else
+#import <React/RCTRootView.h>
+
+static UIView *_rootView = nil;
+#endif
+
 static bool waiting = true;
 static bool addedJsLoadErrorObserver = false;
 static UIView* loadingView = nil;
